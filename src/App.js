@@ -6,6 +6,10 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from './pages/Routes';
 import { ThemeProvider } from 'styled-components';
 import theme from './theme/theme';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+
+library.add( faMapMarkerAlt );
 
 function App() {
   return (
