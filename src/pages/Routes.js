@@ -1,6 +1,6 @@
 import React from 'react';
-import {Route, Switch} from "react-router-dom";
-import WelcomePage from "./Welcome/Welcome";
+import {Route, Switch} from 'react-router-dom';
+import WelcomePage from './Welcome/Welcome';
 
 const Routes = () => {
   return (
