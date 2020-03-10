@@ -8,18 +8,21 @@ import { ThemeProvider } from 'styled-components';
 import theme from './theme/theme';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import {GlobalUserDataProvider} from './hooks/useUsersData';
 
 library.add( faMapMarkerAlt );
 
 function App() {
   return (
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <Router>
-          <Routes/>
-        </Router>
-      </ThemeProvider>
-    </Provider>
+    <GlobalUserDataProvider>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <Router>
+            <Routes/>
+          </Router>
+        </ThemeProvider>
+      </Provider>
+    </GlobalUserDataProvider>
   );
 }
 
