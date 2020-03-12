@@ -1,6 +1,6 @@
 import styled, {css} from 'styled-components';
 import PropTypes from 'prop-types';
-import theme from '../../theme/theme';
+import theme from '../../../theme/theme';
 import {getColor} from '../helpers/getColor';
 
 

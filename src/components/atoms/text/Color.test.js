@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from '@testing-library/react';
 import Color, { getColor } from './Color';
-import theme from '../../theme/theme';
+import theme from '../../../theme/theme';
 
 describe('atoms/text/Color component', ()=>{
 
