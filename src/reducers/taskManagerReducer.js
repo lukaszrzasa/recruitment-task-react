@@ -24,7 +24,7 @@ const initialState = {
   },
   done: {
     icon: 'check-double',
-    name: 'Solved',
+    name: 'Zakończone',
     items:[],
   },
 };
