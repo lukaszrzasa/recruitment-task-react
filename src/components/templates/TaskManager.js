@@ -12,6 +12,8 @@ const Wrapper = styled.div`
   overflow: hidden;
   z-index: 100000;
   flex-direction: column;
+  background: rgb(30,18,85);
+  background: linear-gradient(135deg, rgba(30,18,85,1) 0%, rgba(205,62,228,1) 100%);
 `;
 
 const Header = styled.div`
