@@ -9,12 +9,14 @@ import theme from './theme/theme';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import {GlobalUserDataProvider} from './hooks/useUsersData';
+import GlobalStyle from './theme/GlobalStyle';
 
 library.add( faMapMarkerAlt );
 
 function App() {
   return (
     <GlobalUserDataProvider>
+      <GlobalStyle/>
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <Router>
