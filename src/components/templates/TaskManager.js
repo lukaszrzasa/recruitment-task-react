@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Header from '../atoms/interface/Header';
 
 const Wrapper = styled.div`
   display: flex;
@@ -14,11 +15,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   background: rgb(30,18,85);
   background: linear-gradient(135deg, rgba(30,18,85,1) 0%, rgba(205,62,228,1) 100%);
-`;
-
-const Header = styled.div`
-  height: ${({theme}) => theme.sizes.lg*1.8}px;
-  padding: ${({theme}) => theme.sizes.lg*0.4}px;
 `;
 
 const Content = styled.div`

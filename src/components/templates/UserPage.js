@@ -2,30 +2,40 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Heading from '../atoms/text/Heading';
+import Avatar from '../atoms/Avatar';
+import Header from '../atoms/interface/Header';
 
 const Wrapper = styled.main`
-  
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  > div {
+    width: 100%;
+  }
 `;
 
-const Info = styled.section`
-
+const InfoWrapper = styled.section`
+  width: 45%;
+  overflow: auto;
 `;
 
 const MapWrapper = styled.section`
-
+  width: 55%;
+  > div {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
-const Header = styled.header`
-  
-`;
 
 const Content = styled.section`
-  
+  text-align: center;
 `;
 
-const Avatar = styled.img`
-
-`;
 
 
 const Footer = styled.footer`
@@ -36,10 +46,10 @@ const Footer = styled.footer`
 const UserPageTemplate = ({ header, avatarSrc, userName, contactInfo, footer, map, ...props}) => {
   return (
     <Wrapper>
-      <Info>
+      <InfoWrapper>
         <Header>{header}</Header>
         <Content>
-          <Avatar src={avatarSrc}/>
+          <Avatar src={avatarSrc} size="xxl"/>
           <Heading>{userName}</Heading>
           <div>
             {contactInfo}
@@ -48,7 +58,7 @@ const UserPageTemplate = ({ header, avatarSrc, userName, contactInfo, footer, ma
         <Footer>
           {footer}
         </Footer>
-      </Info>
+      </InfoWrapper>
       <MapWrapper>
         {map}
       </MapWrapper>
