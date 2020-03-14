@@ -2,34 +2,45 @@ import styled, {css} from 'styled-components';
 import PropTypes from 'prop-types';
 import theme from '../../../theme/theme';
 import {getColor} from '../helpers/getColor';
+import { darken } from 'polished';
 
 
+const {sizes, colors} = theme;
 
 const Button = styled.button`
-  width: ${theme.sizes.lg}px;
-  height: ${theme.sizes.lg}px;
-  line-height: ${theme.sizes.lg}px;
+  width: ${sizes.xl}px;
+  height: ${sizes.xl}px;
+  line-height: ${sizes.xl}px;
   text-align: center;
   border-radius: 50%;
   display: block;
   background-color: ${({variant}) => getColor(variant)};
+  color: ${({color}) => getColor(color)} !important;/*because of link*/
   border: none;
   outline: none;
+  transition:background-color .3s;
+  cursor: pointer;
   
   ${({isSmall}) => isSmall && css`
-    width: ${theme.sizes.sm}px;
-    height: ${theme.sizes.sm}px;
-    line-height: ${theme.sizes.sm}px;
+    width: ${sizes.sm}px;
+    height: ${sizes.sm}px;
+    line-height: ${sizes.sm}px;
   `}
+  
+  &:hover {
+    background-color: ${({variant}) => darken(.2,getColor(variant))};
+  }
 `;
 
 Button.propTypes = {
   isSmall: PropTypes.bool,
-  variant: PropTypes.oneOf(Object.keys(theme.colors)).isRequired,
+  variant: PropTypes.oneOf(Object.keys(colors)),
+  color: PropTypes.oneOf(Object.keys(colors)),
 };
 
 Button.defaultProps = {
-  variant: theme.colors.default,
+  variant: colors.default,
+  color: colors.white
 };
 
 
