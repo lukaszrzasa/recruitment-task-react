@@ -3,17 +3,21 @@ import axios from 'axios';
 
 const GlobalUserDataContext = createContext();
 
+const URL = 'http://www.mocky.io/v2/5e0de1893300002b00aa88f3';
+
 export const GlobalUserDataProvider = ({children}) => {
 
   const [userData, setUserData] = useState(null);
   const [err, setErr] = useState(false);
 
   const getData = async () => {
-    await axios.get('http://www.mocky.io/v2/5e0de1893300002b00aa88f3').then(({data}) => {
-      setUserData([null, ...data]);
-    }).catch((err) => {
+    try {
+      const req = await axios.get(URL);
+      const data = req.data;
+      setUserData([...data]);
+    } catch (err) {
       setErr(err);
-    });
+    }
   };
   useEffect(()=>{
     getData();
