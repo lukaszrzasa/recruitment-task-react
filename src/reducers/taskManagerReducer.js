@@ -5,12 +5,12 @@ const initialState = {
   suspended: {
     icon: 'pause',
     name: 'Wstrzymane',
-    items:[],
+    items:[{id:'s1'},{id:'1ss'}],
   },
   toRealization: {
     icon: 'door-open',
     name: 'Do realizacji',
-    items:[],
+    items:[{id:'s2'},{id:'2ss'},{id:'2sss'},{id:'h2'}],
   },
   accomplished: {
     icon: 'door-closed',
@@ -24,21 +24,34 @@ const initialState = {
   },
   done: {
     icon: 'check-double',
-    name: 'Zakończone',
+  name: 'Zakończone',
     items:[],
   },
 };
 
 const taskManagerReducer = (state = initialState, action) => {
   switch(action.type) {
-    case ADD_ITEM_TO_COLUMN:
+    case ADD_ITEM_TO_COLUMN: {
       let newState = {...state};
       newState[action.columnId].items.push(action.item);
       return newState;
-    case SET_STATE:
+    }
+    case SET_STATE: {
+      let newState = Object.keys(action.newState).map(key => ({
+        key,
+        value: {
+          items: action.newState[key],
+          ...state[key],
+        }
+      })).reduce((acc, curr)=>{
+        acc[curr.key] = {...curr.value};
+        return acc;
+      },{});
       return {
-        ...action.newState,
+        ...newState,
+        ...state,
       };
+    }
     default:
       return state;
   }

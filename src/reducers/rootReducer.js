@@ -3,7 +3,7 @@ import taskManagerReducer from './taskManagerReducer';
 
 
 export const rootReducer = combineReducers({
-  taskManagerReducer,
+  taskManager:taskManagerReducer,
 });
 
 export const store = createStore(rootReducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
