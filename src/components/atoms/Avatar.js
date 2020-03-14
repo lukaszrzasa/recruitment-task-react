@@ -1,11 +1,8 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import theme from '../../theme/theme';
 
-export const sizes = {
-  xs: 18,
-  md: 30,
-  xl: 55,
-};
+const { sizes } = theme;
 
 export const getSize = (size) => {
   if(Object.keys(sizes).indexOf(size)===-1) return sizes.md;
@@ -20,7 +17,7 @@ const Avatar = styled.img`
 `;
 
 Avatar.propTypes = {
-  size: PropTypes.oneOf(['xl', 'md', 'xs']),
+  size: PropTypes.oneOf(Object.keys(sizes)),
 };
 Avatar.defaultProps = {
   size: 'md',
