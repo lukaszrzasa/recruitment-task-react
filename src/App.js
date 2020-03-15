@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bulma/css/bulma.css'
 import { Provider } from 'react-redux';
-import { store } from './reducers/rootReducer';
+import { store } from './store/rootReducer';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from './pages/Routes';
 import { ThemeProvider } from 'styled-components';

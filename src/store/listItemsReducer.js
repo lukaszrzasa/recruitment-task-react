@@ -4,20 +4,22 @@ import {ADD_ITEM, ASSIGN_USER, REMOVE_ITEM, SET_LIST, TOGGLE_FAVOURITE, UPDATE_I
 const initialState = listNames.reduce((acc, curr)=>{
   acc[curr] = [];
   return acc;
-},{});
+},{
+  itemsCount:0, // helper variable (unique id) -> increment on each new item
+});
 
 
 const listItemsReducer = ( state = initialState, action ) => {
   switch(action.type) {
     case ADD_ITEM: {
       const {key, newItem} = action.payload;
-      return {
-        [key]: [
-          ...state[key],
-          newItem,
-        ],
-        ...state,
-      };
+      let newState = {...state};
+      newState[key].push({
+        ...newItem,
+        id: state.itemsCount,
+      });
+      newState.itemsCount++;
+      return newState;
     }
 
     case REMOVE_ITEM: {
@@ -25,15 +27,15 @@ const listItemsReducer = ( state = initialState, action ) => {
       const newList = [...state[key]];//TODO (optional): allow (temporary) undo deletion
       newList.splice(index, 1);
       return {
-        [key]: [...newList],
         ...state,
+        [key]: [...newList],
       }
     }
 
     case SET_LIST: {
       return {
-        ...action.payload, // it can be 1 or 2 (move to different list)
         ...state,
+        ...action.payload, // it can be 1 or 2 (move to different list)
       }
     }
 
@@ -41,8 +43,8 @@ const listItemsReducer = ( state = initialState, action ) => {
       const {key, index, userId} = action.payload;
       const newState = {...state};
       const item = {
-        userId,
         ...state[key][index],
+        userId,
       };
       newState[key].splice(index, 1, item);
       return {...newState};
@@ -52,8 +54,8 @@ const listItemsReducer = ( state = initialState, action ) => {
       const {key, index} = action.payload;
       const newState = {...state};
       const item = {
-        isFavourite: !state[key][index],
         ...state[key][index],
+        isFavourite: !state[key][index],
       };
       newState[key].splice(index, 1, item);
       return newState;
@@ -63,8 +65,8 @@ const listItemsReducer = ( state = initialState, action ) => {
       const {key, index, value} = action.payload;
       const newState = {...state};
       const item = {
-        value,
         ...state[key][index],
+        value,
       };
       newState[key].splice(index, 1, item);
       return newState;
