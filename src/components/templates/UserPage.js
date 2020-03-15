@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Heading from '../atoms/text/Heading';
-import Avatar from '../atoms/Avatar';
+import Avatar from '../atoms/interface/Avatar';
 import Header from '../atoms/interface/Header';
 
 const Wrapper = styled.main`

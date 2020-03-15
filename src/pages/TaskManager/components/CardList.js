@@ -4,7 +4,7 @@ import Column from '../../../components/molecules/Column';
 import {Droppable} from 'react-beautiful-dnd';
 import {useSelector} from 'react-redux';
 import ItemList from './itemList';
-import Flex from '../../../components/atoms/Flex';
+import Flex from '../../../components/atoms/interface/Flex';
 
 const DroppableColumn = ({id, elem}) => {
   const { name, icon } = elem;
