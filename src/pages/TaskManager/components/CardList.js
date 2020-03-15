@@ -1,6 +1,6 @@
 import React from 'react';
 import Icon from '../../../components/atoms/text/Icon';
-import Card from '../../../components/molecules/Card';
+import Column from '../../../components/molecules/Column';
 import {Droppable} from 'react-beautiful-dnd';
 import {useSelector} from 'react-redux';
 import ItemList from './itemList';
@@ -8,7 +8,7 @@ import Flex from '../../../components/atoms/Flex';
 
 const DroppableColumn = ({id, elem}) => {
   const { name, icon } = elem;
-  return (<Card heading={<><Icon icon={icon} /> {name}</>}>
+  return (<Column heading={<><Icon icon={icon} /> {name}</>}>
     <Droppable droppableId={id}>
       {(provided) => (
         <div
@@ -19,7 +19,7 @@ const DroppableColumn = ({id, elem}) => {
         </div>
       )}
     </Droppable>
-  </Card>);
+  </Column>);
 };
 
 
