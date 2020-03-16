@@ -5,7 +5,7 @@ import {getColor} from '../helpers/getColor';
 
 
 const Color = styled.span`
-  color: ${({variant})=>getColo(variant)};
+  color: ${({variant})=>getColor(variant)};
   ${({isBlock}) => isBlock && css`
     display: block;
   `}

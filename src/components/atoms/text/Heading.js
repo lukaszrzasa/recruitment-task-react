@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Heading = styled.h2`
-  font-size: ${({theme})=> theme.sizes.lg*.7}px;
+  font-size: ${({theme})=> theme.sizes.md*0.8}px;
   margin: 0;
 `;
 

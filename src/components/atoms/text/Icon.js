@@ -10,6 +10,7 @@ const Icon = styled(FontAwesomeIcon)`
 
 Icon.propTypes = {
   isSolid: PropTypes.bool,
+  icon: PropTypes.string.isRequired,
 };
 
 export default Icon;
