@@ -25,12 +25,9 @@ export const setListOrder = (newArray) => ({
 /* listItems */
 /*-----------*/
 
-export const addItem = (key, newItem) => ({
+export const addItem = key => ({
   type: ADD_ITEM,
-  payload: {
-    key,
-    newItem,
-  }
+  payload: key
 });
 
 export const removeItem = (key, index) => ({
