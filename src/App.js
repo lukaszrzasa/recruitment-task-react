@@ -8,17 +8,14 @@ import { ThemeProvider } from 'styled-components';
 import theme from './theme/theme';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
-  faMapMarkerAlt,
-  faArrowLeft,
-  faPause,
-  faDoorOpen,
-  faCheck,
-  faDoorClosed, faCheckDouble
+  faMapMarkerAlt, faArrowLeft, faPause,
+  faDoorOpen, faCheck, faDoorClosed,
+  faCheckDouble, faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import {GlobalUserDataProvider} from './hooks/useUsersData';
 import GlobalStyle from './theme/GlobalStyle';
 
-library.add( faMapMarkerAlt, faArrowLeft, faPause, faDoorOpen, faDoorClosed, faCheck, faCheckDouble );
+library.add( faMapMarkerAlt, faArrowLeft, faPause, faDoorOpen, faDoorClosed, faCheck, faCheckDouble, faPlus );
 
 function App() {
   return (
