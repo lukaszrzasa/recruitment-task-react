@@ -3,6 +3,7 @@ const colors = {
   black: '#222',
   default: '#222',
   gray: '#809396',
+  gold: '#ffdf13',
   white: '#fff',
 };
 
