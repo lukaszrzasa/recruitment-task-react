@@ -15,10 +15,7 @@ const reorder = (list, droppableSource, droppableDestination) => {
 
   // reorder
   const [removed] = destClone.splice(startIndex, 1);
-  console.log(destClone);
-  console.log(removed);
   destClone.splice(endIndex, 0, removed);
-  console.log(destClone);
 
   // return object with reordered array
   result[droppableDestination.droppableId] = destClone;
