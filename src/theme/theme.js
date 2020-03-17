@@ -5,6 +5,9 @@ const colors = {
   gray: '#809396',
   gold: '#ffdf13',
   white: '#fff',
+  red: '#be2d10',
+  green: '#13ad25',
+  transparent: 'transparent',
 };
 
 const sizes = {
@@ -13,6 +16,7 @@ const sizes = {
   lg:40,
   md:22,
   sm:18,
+  xs: 14,
 };
 
 const theme = {
