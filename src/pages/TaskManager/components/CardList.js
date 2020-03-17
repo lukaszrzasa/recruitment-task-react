@@ -1,55 +1,73 @@
 import React, {useEffect, useRef, useState} from 'react';
 import Column from '../../../components/molecules/Column';
 import {Droppable} from 'react-beautiful-dnd';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import ItemList from './itemList';
 import Flex from '../../../components/atoms/interface/Flex';
-import Toggle from '../../../providers/Toggle';
 import Textarea from '../../../components/atoms/form/Textarea';
-import Button from '../../../components/atoms/form/Button';
-import Icon from '../../../components/atoms/text/Icon';
+import styled from 'styled-components';
+import useDetectOutsideClick from '../../../hooks/useDetectOutsideClick';
+import {addItem} from '../../../store/actions';
+import ButtonGroup from '../../../components/molecules/ButtonGroup';
 
-const Test = ({toggle, isToggle}) => {
+const FooterWrapper = styled.div`
+  padding: 10px;
+`;
+
+const Footer = ({id}) => {
+  const [isVisible, setIsVisible] = useState(false);
   const [value, setValue] = useState('');
-  const node = useRef(null);
+  const container = useRef(null);
+  const dispatch = useDispatch();
+  useDetectOutsideClick(container, setIsVisible);
 
-  const handleClick = (ev) => {
-    console.log(isToggle);
-    toggle();
-    if(isToggle && !node.current.contains(ev.target)){
-      console.log(false);
-      toggle(true);
+  const submit = () => {
+    const newValue = value.trim();
+    if (newValue.length > 0) {
+      dispatch(addItem(id, newValue));
     }
+    setIsVisible(false);
+    setValue('');// clear value
+  };
+
+  const cancel = () => {
+    setValue('');
+    setIsVisible(false);
+  };
+
+  const onKeyDown = (ev) => {
+    if(ev.key === 'Enter')
+      submit();
+    if(ev.key === 'Escape')
+      cancel();
   };
 
   useEffect(()=>{
-    document.addEventListener('mousedown', handleClick);
-    return () => document.removeEventListener('mousedown', handleClick);
-  }, []);
+    if(isVisible===false){
+      submit();
+    }
+  },[isVisible, submit]); // TODO: test ("submit")
 
-  return <div ref={node}>
-    {isToggle && <>
+
+
+
+  return <FooterWrapper ref={container}>
+    {!isVisible && <Flex style={{justifyContent:'center'}}>
+      <ButtonGroup type="add" onClick={()=>setIsVisible(true)} />
+    </Flex>}
+    {isVisible && <>
       <Textarea
+        autoFocus
         value={value}
         onChange={({target}) => setValue(target.value)}
+        onKeyDown={onKeyDown}
       />
-      <div>Buttons</div>
+      <Flex>
+        <ButtonGroup type="cancel" onClick={cancel} />
+        <ButtonGroup type="save" onClick={submit} />
+      </Flex>
     </>}
-    {!isToggle && <Button
-      variant="gray"
-      color="white"
-      isSmall
-      onClick={()=>toggle(true)}
-    >
-      <Icon icon="plus"/>
-    </Button>}
-  </div>
-};
-
-const Footer = ({id}) => {
-
-
-  return <Toggle toggle={false} render={({toggle, isToggle})=><Test toggle={toggle} isToggle={isToggle}/>}/>;
+  </FooterWrapper>;
 };
 
 const DroppableColumn = ({id, elem}) => {

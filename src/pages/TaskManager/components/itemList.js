@@ -25,7 +25,7 @@ const ItemList = ({id}) => {
   const users = useGlobalUserData();
   const filteredItems = filterBy(items, filter, users);
 
-  return (filteredItems.map((e,i)=><Item key={e.id} index={i} item={e}/>)
+  return (filteredItems.map((e,i)=><Item key={e.id} columnId={id} index={i} item={e}/>)
   );
 };
 
