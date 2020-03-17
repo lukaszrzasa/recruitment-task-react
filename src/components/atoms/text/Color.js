@@ -12,7 +12,7 @@ const Color = styled.span`
 `;
 
 Color.propTypes = {
-  variant: PropTypes.oneOf(Object.keys(theme.colors)).isRequired,
+  variant: PropTypes.oneOf(Object.keys(theme.colors)),
   isBlock: PropTypes.bool,
 };
 

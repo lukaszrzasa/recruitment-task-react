@@ -24,9 +24,11 @@ const defaultItem = {
 const listItemsReducer = ( state = initialState, action ) => {
   switch(action.type) {
     case ADD_ITEM: {
+      const {key, value} = action.payload;
       let newState = {...state};
-      newState[action.payload].push({
+      newState[key].push({
         ...defaultItem,
+        value,
         id: state.itemsCount,
       });
       newState.itemsCount++;
@@ -66,7 +68,7 @@ const listItemsReducer = ( state = initialState, action ) => {
       const newState = {...state};
       const item = {
         ...state[key][index],
-        isFavourite: !state[key][index],
+        isFavourite: !state[key][index].isFavourite,
       };
       newState[key].splice(index, 1, item);
       return newState;
