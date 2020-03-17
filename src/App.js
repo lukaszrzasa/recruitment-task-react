@@ -10,24 +10,28 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faMapMarkerAlt, faArrowLeft, faPause,
   faDoorOpen, faCheck, faDoorClosed,
-  faCheckDouble, faPlus,
+  faCheckDouble, faPlus, faTimes, faStar, faPen,
 } from '@fortawesome/free-solid-svg-icons';
+import { faStar as faRegularStar } from '@fortawesome/free-regular-svg-icons';
 import {GlobalUserDataProvider} from './hooks/useUsersData';
 import GlobalStyle from './theme/GlobalStyle';
+import BodyModalProvider from './providers/BodyModal';
 
-library.add( faMapMarkerAlt, faArrowLeft, faPause, faDoorOpen, faDoorClosed, faCheck, faCheckDouble, faPlus );
+library.add( faMapMarkerAlt, faArrowLeft, faPause, faDoorOpen, faDoorClosed, faCheck, faCheckDouble, faPlus, faTimes, faStar, faPen, faRegularStar );
 
 function App() {
   return (
     <GlobalUserDataProvider>
-      <GlobalStyle/>
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <Router>
-            <Routes/>
-          </Router>
-        </ThemeProvider>
-      </Provider>
+      <BodyModalProvider>
+        <GlobalStyle/>
+        <Provider store={store}>
+          <ThemeProvider theme={theme}>
+            <Router>
+              <Routes/>
+            </Router>
+          </ThemeProvider>
+        </Provider>
+      </BodyModalProvider>
     </GlobalUserDataProvider>
   );
 }
