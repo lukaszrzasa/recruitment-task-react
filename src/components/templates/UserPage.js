@@ -67,6 +67,7 @@ const Footer = styled.footer`
 const FooterContent = styled.div`
   display: flex;
   flex-wrap: wrap;
+  text-align: left;
   > div {
     width: 310px;
     margin:5px;
@@ -74,7 +75,18 @@ const FooterContent = styled.div`
 `;
 
 
-const UserPageTemplate = ({ header, avatarSrc, userName, jobTitle, contactInfo, description, footer, map, ...props}) => {
+const UserPageTemplate = (
+  {
+    header,
+    avatarSrc,
+    userName,
+    jobTitle,
+    contactInfo,
+    description,
+    footer,
+    map,
+    ...props
+  }) => {
 
   const dispatch = useDispatch();
 
@@ -95,7 +107,7 @@ const UserPageTemplate = ({ header, avatarSrc, userName, jobTitle, contactInfo, 
           </Description>
         </Content>
         <Footer>
-          {!footer && <>
+          {footer && <>
             <Heading size="lg">
               <strong>Przypisane zadania:</strong>
             </Heading>
@@ -111,7 +123,6 @@ const UserPageTemplate = ({ header, avatarSrc, userName, jobTitle, contactInfo, 
               })}
               variant="gray"
               color="white"
-              isSmall
             >
               Pokaż wszystkie przypisane
             </TextButton>
@@ -133,6 +144,7 @@ UserPageTemplate.propTypes = {
   avatarSrc: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
   description: PropTypes.string,
+  jobTitle: PropTypes.string,
   contactInfo: PropTypes.array,
   footer: PropTypes.node,
   map: PropTypes.node,

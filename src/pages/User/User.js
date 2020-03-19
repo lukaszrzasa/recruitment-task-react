@@ -7,10 +7,23 @@ import Icon from '../../components/atoms/text/Icon';
 import {Link} from 'react-router-dom';
 import {useParams} from 'react-router-dom';
 import Error from '../../components/templates/Error';
+import {useDispatch, useSelector} from 'react-redux';
+import Task from '../../components/organisms/Task';
+import {listNames} from '../../store/listOrderReducer';
+import {clearFilterList} from '../../store/actions';
 
-const Header = ()=><>
-  <Button variant="gray" color="white" as={Link} to="/"><Icon icon="arrow-left"/></Button>
-</>;
+const Header = ()=>{
+  const dispatch = useDispatch();
+  return <Button
+    onClick={ () => dispatch(clearFilterList()) }
+    variant="gray"
+    color="white"
+    as={Link}
+    to="/"
+  >
+    <Icon icon="arrow-left"/>
+  </Button>;
+};
 
 const MapContainer = ({position, zoom}) => {
   return <Map center={position} zoom={zoom}>
@@ -26,9 +39,29 @@ const MapContainer = ({position, zoom}) => {
   </Map>;
 };
 
+export const separateTasksByUserId = (items, userId) => listNames.map( // convert object of arrays --to--> array to arrays
+    key => items[key].map( // each key of object
+      ( e, index ) => ( { ...e, index, columnId: key } ) // add helper variable -> index (order) && columnId
+    ).filter(e => e.userId===userId) // find all elements for specific user
+  ).reduce((acc, curr) => [...curr, ...acc]  , []); // flatten array
+
+const Footer = ({userId}) => {
+  const items = useSelector(({listItems}) => listItems);
+  const itemsFlatten = separateTasksByUserId(items, userId);
+  return (<>
+    {itemsFlatten.map( ( { columnId, index, ...item }, i )=><Task
+      key={i}
+      isDragging={false}
+      item={item}
+      columnId={columnId}
+      index={index}
+    />)}
+  </>);
+};
 
 
-const UserPage = ({}) => {
+
+const UserPage = () => {
   const { getById } = useGlobalUserData();
   const { id } = useParams();
   const user = getById(id);
@@ -54,6 +87,7 @@ const UserPage = ({}) => {
       contactInfo={contactInfo}
       map={<MapContainer position={position} zoom={zoom} />}
       header={<Header/>}
+      footer={<Footer userId={user.id}/>}
     />
   );
 };
