@@ -13,7 +13,7 @@ const Button = styled.button`
   line-height: ${sizes.xl}px;
   font-size: ${sizes.xl*0.65}px;
   text-align: center;
-  border-radius: 50%;
+  border-radius: ${sizes.xl/2}px;
   background-color: ${({variant}) => getColor(variant)};
   color: ${({color}) => getColor(color)} !important;/*because of link*/
   border: none;
@@ -28,11 +28,20 @@ const Button = styled.button`
     height: ${sizes.sm}px;
     line-height: ${sizes.sm}px;
     font-size: ${sizes.xs}px;
+    border-radius: ${sizes.sm/2}px;
   `}
   
   &:hover {
     background-color: ${({variant}) => darken(.2,getColor(variant))};
   }
+`;
+
+export const TextButton = styled(Button)`
+  width: unset !important;
+  display: inline-block;
+  padding: 5px 10px;
+  height: ${sizes.sm+10}px;
+  border-radius: ${(sizes.sm+10)/2}px;
 `;
 
 Button.propTypes = {
