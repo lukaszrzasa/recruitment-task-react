@@ -1,7 +1,7 @@
 import React from 'react';
 import TaskManagerTemplate from '../../components/templates/TaskManager';
 import {DragDropContext} from 'react-beautiful-dnd';
-import CardList from './components/CardList';
+import ColumnList from './components/ColumnList';
 import PageHeader from './components/PageHeader';
 import PageFooter from './components/PageFooter';
 import onDragEnd from './helpers/onDragEnd';
@@ -33,8 +33,8 @@ const TaskManagerPage = () => {
     <DragDropContext onDragEnd={handleDragEnd}>
       <TaskManagerTemplate
         header={<PageHeader/>}
+        children={<ColumnList/>}
         footer={<PageFooter/>}
-        children={<CardList/>}
       />
     </DragDropContext>
   );

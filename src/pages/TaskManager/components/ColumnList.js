@@ -46,9 +46,9 @@ const Footer = ({id}) => {
     if(isVisible===false){
       submit();
     }
-  },[isVisible, submit]); // TODO: test ("submit")
+  },[isVisible]);
 
-
+  //TODO: add character counter
 
 
   return <FooterWrapper ref={container}>
@@ -59,7 +59,7 @@ const Footer = ({id}) => {
       <Textarea
         autoFocus
         value={value}
-        onChange={({target}) => setValue(target.value)}
+        onChange={({target}) => target.value.length<=120 && setValue(target.value)}
         onKeyDown={onKeyDown}
       />
       <Flex>
@@ -92,7 +92,7 @@ const DroppableColumn = ({id, elem}) => {
 };
 
 
-const CardList = () => {
+const ColumnList = () => {
 
   const {listOrder, listHeader} = useSelector(state => state);
 
@@ -103,4 +103,4 @@ const CardList = () => {
   );
 };
 
-export default CardList;
+export default ColumnList;

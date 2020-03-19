@@ -4,10 +4,10 @@ import {useSelector} from 'react-redux';
 import useGlobalUserData from '../../../hooks/useUsersData';
 import Item from './Item';
 
-const filterBy = (items, {mode, value}, users) => {
+const filterBy = (items, {mode, value}, getIdsByName) => {
   if(value === '') return items;
   if(mode === 'user'){
-    const ids = users.getIdsByName(value);
+    const ids = getIdsByName(value);
     return items.filter(
       e => ids.indexOf(e.userId) !== -1
     );
@@ -22,8 +22,8 @@ const ItemList = ({id}) => {
 
   const items = useSelector(({listItems}) => listItems[id]);
   const { list: filter } = useSelector(({filter})=>filter);
-  const users = useGlobalUserData();
-  const filteredItems = filterBy(items, filter, users);
+  const { getIdsByName } = useGlobalUserData();
+  const filteredItems = filterBy(items, filter, getIdsByName);
 
   return (filteredItems.map((e,i)=><Item key={e.id} columnId={id} index={i} item={e}/>)
   );
