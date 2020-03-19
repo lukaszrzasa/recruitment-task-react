@@ -1,5 +1,6 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
 import axios from 'axios';
+import Error from '../components/templates/Error';
 
 const GlobalUserDataContext = createContext();
 
@@ -10,14 +11,14 @@ export const GlobalUserDataProvider = ({children}) => {
   const [userData, setUserData] = useState(null);
   const [err, setErr] = useState(false);
 
-  const getIdsByName = filterBy => userData.filter(e=>{
+  const getAllByName = (filterBy, allowWithoutJobTitle) => userData.filter(e => {
+    if(!e.job_title && !allowWithoutJobTitle) return false;
     // filter by first and last name
     const name = e.first_name + ' ' + e.last_name;
     return name.toLowerCase().indexOf(filterBy.toLowerCase())!==-1;
-    // TODO: filter by first&last name in reversed order
-  }).map(
-    e => e.id// separate id only
-  );
+  });
+
+  const getIdsByName = (filterBy) => getAllByName(filterBy).map(e => e.id);
 
   const getIdsByJobTitle = filterBy => userData.filter(
     e => e.job_title.toLowerCase().indexOf(filterBy.toLowerCase())!==-1
@@ -25,7 +26,7 @@ export const GlobalUserDataProvider = ({children}) => {
     e => e.id
   );
 
-  const getById = id => userData.find(e=>e.id===id);
+  const getById = id => userData.find(e=>e.id==id);
 
   const isProjectManager = id => {
     if(id){
@@ -49,14 +50,21 @@ export const GlobalUserDataProvider = ({children}) => {
     getData();
   },[]);
 
-  return(<GlobalUserDataContext.Provider value={{userData, getIdsByName, getIdsByJobTitle, getById, isProjectManager}}>
+  return(<GlobalUserDataContext.Provider value={{userData, getIdsByName, getIdsByJobTitle, getById, isProjectManager, getAllByName}}>
     {userData !== null && children}
-    {err && `Unable to download userData (${err})`}
+    {err && <Error backTo="/" errMsg={`Unable to download userData (${err})`} />}
   </GlobalUserDataContext.Provider>);
 };
 
 const useGlobalUserData = () => {
-  const {userData, getIdsByName, getIdsByJobTitle, getById, isProjectManager} = useContext(GlobalUserDataContext);
+  const {
+    userData,
+    getIdsByName,
+    getIdsByJobTitle,
+    getById,
+    isProjectManager,
+    getAllByName,
+  } = useContext(GlobalUserDataContext);
 
   return {
     data: userData,
@@ -64,6 +72,7 @@ const useGlobalUserData = () => {
     getIdsByJobTitle,
     getById,
     isProjectManager,
+    getAllByName,
   };
 };
 
