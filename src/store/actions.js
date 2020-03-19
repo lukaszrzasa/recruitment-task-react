@@ -9,7 +9,7 @@ import {
   SET_FILTER_LIST_MODE,
   SET_FILTER_USER_MODE,
   SET_FILTER_LIST_VALUE,
-  SET_FILTER_USER_VALUE,
+  SET_FILTER_USER_VALUE, CLEAR_FILTER_LIST, CLEAR_FILTER_USER,
 } from './types';
 
 
@@ -94,4 +94,12 @@ export const setFilterUserMode = option => ({
 export const setFilterUserValue = value => ({
   type: SET_FILTER_USER_VALUE,
   payload: value,
+});
+
+export const clearFilterList = () => ({
+  type: CLEAR_FILTER_LIST,
+});
+
+export const clearFilterUser = () => ({
+  type: CLEAR_FILTER_USER,
 });
