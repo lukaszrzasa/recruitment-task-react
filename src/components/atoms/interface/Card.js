@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 const Card = styled.div`
   background-color: #fff;
   border-radius: 5px;
-  padding: 10px 10px 25px;
+  padding: 10px 10px 25px 7px;
   position: relative;
   overflow: hidden;
-  border-left: ${({theme, isFavourite})=> isFavourite ? theme.colors.gold : 'transparent'} 4px solid;
+  border-left: ${({theme, isFavourite})=> isFavourite ? theme.colors.gold : 'transparent'} 6px solid;
 
   .show-on-hover {
     .on-hover {

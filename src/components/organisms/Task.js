@@ -2,7 +2,6 @@ import React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
 import Card from '../atoms/interface/Card';
 import PropTypes from 'prop-types';
-import useGlobalUserData from '../../hooks/useUsersData';
 import useDetectOutsideClick from '../../hooks/useDetectOutsideClick';
 import {useDispatch} from 'react-redux';
 import {removeItem, toggleFavourite, updateItemText} from '../../store/actions';
@@ -15,7 +14,6 @@ import AssignUser from '../../pages/TaskManager/components/AssignUser';
 const Wrapper = styled.div`
   padding: 0 6px 6px;
   transition: transform .3s 0s;
-  transform: rotate(${({isDragging}) => isDragging ? 3 : 0}deg);
   position: relative;
 `;
 
@@ -31,8 +29,9 @@ const Footer = styled.div`
 
 const ToggleFavourite = styled.div`
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 0;
+  right: 0;
+  padding:5px;
   cursor: pointer;
   display: inline-block;
   line-height: ${({theme}) => theme.sizes.sm}px;
@@ -52,6 +51,9 @@ const Task = ({item, isDragging, columnId, index}) => {
     const valueToSet = newValue.trim();
     if(valueToSet !== value && valueToSet.length>0){
       dispatch(updateItemText(columnId, index, valueToSet));
+    } else {
+      // because newValue could has some spaces at the beginning or end of the value - we need to clear that
+      setNewValue(valueToSet);
     }
     setIsEdited(false);
   };
