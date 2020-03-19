@@ -23,7 +23,7 @@ const Content = styled.div`
 `;
 
 const Footer = styled.div`
-  padding: ${({theme}) => theme.sizes.lg*0.4}px;
+  padding: ${({theme}) => `${theme.sizes.lg*0.2}px ${theme.sizes.lg*0.4}px`};
   background-color: #fff;
   margin-top: auto;
 `;
