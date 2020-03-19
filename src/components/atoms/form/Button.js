@@ -42,6 +42,8 @@ export const TextButton = styled(Button)`
   padding: 5px 10px;
   height: ${sizes.sm+10}px;
   border-radius: ${(sizes.sm+10)/2}px;
+  line-height: ${sizes.sm}px;
+  font-size: ${sizes.xs}px;
 `;
 
 Button.propTypes = {

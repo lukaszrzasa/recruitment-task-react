@@ -1,29 +1,63 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
-import Toggle from '../../providers/Toggle';
+import React, {useRef, useState} from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import Option from '../atoms/form/Option';
+import useDetectOutsideClick from '../../hooks/useDetectOutsideClick';
 
 const StyledSelect = styled.div`
-  max-height: ${({theme}) => theme.sizes.md}px;
+  height: 30px;
   overflow: visible;
-  > div {
-    display: flex;
-    flex-direction: row;
-    background-color: #fff;
-    border: ${({isOpen}) => isOpen ? };
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  .selected {
+    display: block;
+    order: 1;
+  }
+  .no-selected {
+    display: ${({isVisible}) => isVisible ? 'block' : 'none'};
+    order: 2;
+    margin-top: -1px
   }
 `;
 
-const SelectRender = ({toggle, isToggle}) => {
-  return <StyledSelect isOpen={isToggle}>
+const Select = ({options, evSelect, defaultValue}) => {
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [selected, setSelected] = useState(defaultValue);
+  useDetectOutsideClick(ref, setIsVisible);
 
-  </StyledSelect>;
+  const handleClick = (key) => {
+    evSelect(key);
+    setSelected(key);
+    setIsVisible(false);
+  };
+
+  return <StyledSelect
+    ref={ref}
+    isVisible={isVisible}
+    onClick={() => isVisible || setIsVisible(true)}
+  >
+    {options.map(({key, name},i) => <Option
+      onClick={ () => handleClick(key) }
+      key={i}
+      className={ key===selected ? 'selected' : 'no-selected' }
+    >
+      {name}
+    </Option>)}
+  </StyledSelect>
 };
 
-const Select = () => <Toggle render={SelectRender} />;
-
 Select.propTypes = {
-  isSmall: PropTypes.bool,
+  evSelect: PropTypes.func.isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired,
+  ),
+  defaultValue: PropTypes.string.isRequired,
 };
 
 export default Select;
