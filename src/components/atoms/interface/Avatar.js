@@ -1,13 +1,9 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import theme from '../../../theme/theme';
+import getSize from '../helpers/getSize';
 
 const { sizes } = theme;
-
-export const getSize = (size) => {
-  if(Object.keys(sizes).indexOf(size)===-1) return sizes.md;
-  return sizes[size];
-};
 
 const Avatar = styled.img`
   width: ${({size}) => getSize(size)}px;
