@@ -29,10 +29,12 @@ const PageFooter = () => {
   const [search, setSearch] = useState('');
   const { getAllByName } = useGlobalUserData();
 
+  const users = getAllByName(search, true);
+
   return (
     <Flex>
     {/*  TODO: search */}
-      {getAllByName(search, true).slice(0,10).map(({ id, first_name, last_name, avatar, job_title})=><Item as={Link} key={id} to={`/user/${id}`}>
+      {users.slice(0,10).map(({ id, first_name, last_name, avatar, job_title})=><Item as={Link} key={id} to={`/user/${id}`}>
         <Avatar size="lg" src={avatar} />
         <Color variant="default">
           {first_name} {last_name}
@@ -41,6 +43,9 @@ const PageFooter = () => {
           <i>{job_title || '-'}</i>
         </Color>
       </Item>)}
+      {users.length>10 && <Flex style={{alignSelf:'stretch',alignItems:'center'}}>
+        <span>+ {users.length-10} więcej...</span>
+      </Flex>}
     </Flex>
   );
 };
