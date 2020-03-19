@@ -99,7 +99,7 @@ const Task = ({item, isDragging, columnId, index}) => {
             <ButtonGroup type="remove" onClick={()=>dispatch(removeItem(columnId, index))} />
             <ButtonGroup type="edit" onClick={()=>setIsEdited(true)} />
           </Flex>}
-          <AssignUser userId={userId} />
+          <AssignUser userId={userId} index={index} columnId={columnId} />
         </Flex>
       </Footer>
     </Card>
