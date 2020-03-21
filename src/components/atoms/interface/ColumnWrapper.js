@@ -7,6 +7,13 @@ const ColumnWrapper = styled.div`
   padding: 0;
   margin: ${({theme})=>theme.sizes.md*.4}px;
   position: relative;
+  max-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction:column;
+  align-items: stretch;
+  justify-content: stretch;
+  flex-grow:1;
 `;
 
 export default ColumnWrapper;
