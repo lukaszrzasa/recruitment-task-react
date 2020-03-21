@@ -4,14 +4,29 @@ import {ADD_ITEM, ASSIGN_USER, REMOVE_ITEM, SET_LIST, TOGGLE_FAVOURITE, UPDATE_I
 const initialState = listNames.reduce((acc, curr)=>{
   acc[curr] = [];
   if(curr==='done') acc[curr].push({
-    id: -1,
+    id: 1,
+    value: 'aa',
+    userId: 6,
+    isFavourite: true,
+  },{
+    id: 2,
+    value: 'aa',
+    userId: 6,
+    isFavourite: true,
+  },{
+    id: 3,
+    value: 'aa',
+    userId: 6,
+    isFavourite: true,
+  },{
+    id: 4,
     value: 'aa',
     userId: 6,
     isFavourite: true,
   });
   return acc;
 },{
-  itemsCount:0, // helper variable (unique id) -> increment on each new item
+  itemsCount:5, // helper variable (unique id) -> increment on each new item
 });
 
 const defaultItem = {
