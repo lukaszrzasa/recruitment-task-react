@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Header from '../atoms/interface/Header';
+import Flex from '../atoms/interface/Flex';
 
 const Wrapper = styled.div`
   display: flex;
@@ -17,9 +18,10 @@ const Wrapper = styled.div`
   background: linear-gradient(135deg, rgba(30,18,85,1) 0%, rgba(205,62,228,1) 100%);
 `;
 
-const Content = styled.div`
+const Content = styled(Flex)`
   padding: ${({theme}) => theme.sizes.lg*0.4}px;
   height: auto;
+  overflow: hidden;
 `;
 
 const Footer = styled.div`

@@ -14,6 +14,7 @@ const FooterWrapper = styled.div`
   padding: 10px;
 `;
 
+
 const Footer = ({id}) => {
   const [isVisible, setIsVisible] = useState(false);
   const [value, setValue] = useState('');
@@ -81,6 +82,7 @@ const DroppableColumn = ({id, elem}) => {
     <Droppable droppableId={id}>
       {(provided) => (
         <div
+          style={{overflowY:'auto',maxHeight:'100%',minHeight:'1px'}}
           ref={provided.innerRef}
           {...provided.droppableProps}>
           <ItemList id={id} />
@@ -97,9 +99,9 @@ const ColumnList = () => {
   const {listOrder, listHeader} = useSelector(state => state);
 
   return (
-    <Flex>
+    <>
       {listOrder.map((e,i)=> <DroppableColumn key={i} id={e} elem={listHeader[e]} />)}
-    </Flex>
+    </>
   );
 };
 
