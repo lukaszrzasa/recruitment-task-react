@@ -6,6 +6,9 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     overflow: hidden;
   }
+  * {
+    overflow-wrap: break-word;
+  }
 `;
 
 export default GlobalStyle;
