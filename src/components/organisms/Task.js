@@ -74,6 +74,7 @@ const Task = ({item, isDragging, columnId, index}) => {
     if(!isEdited){
       submit();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isEdited]);
 
   return (<Wrapper ref={ref} isDragging={isDragging}>
@@ -83,7 +84,7 @@ const Task = ({item, isDragging, columnId, index}) => {
       </ToggleFavourite>
       {!isEdited && value}
       {isEdited && <Textarea
-        onChange={({target}) => setNewValue(target.value)}
+        onChange={({target}) => target.value.length<=240 && setNewValue(target.value)}
         autoFocus
         value={newValue}
         onKeyDown={onKeyDown}

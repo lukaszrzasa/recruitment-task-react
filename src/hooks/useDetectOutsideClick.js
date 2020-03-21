@@ -12,6 +12,7 @@ const useDetectOutsideClick = (ref, handler) => {
     return () => {
       document.removeEventListener('mousedown', listener);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 };
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import useGlobalUserData from '../../../hooks/useUsersData';
 import Avatar from '../../../components/atoms/interface/Avatar';
 import {Link} from 'react-router-dom';

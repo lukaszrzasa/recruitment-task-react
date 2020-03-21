@@ -26,7 +26,8 @@ export const GlobalUserDataProvider = ({children}) => {
     e => e.id
   );
 
-  const getById = id => userData.find(e=>e.id==id);
+  // eslint-disable-next-line eqeqeq
+  const getById = id => userData.find(e=>e.id == id);
 
   const isProjectManager = id => {
     if(id){

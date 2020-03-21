@@ -47,6 +47,7 @@ const Footer = ({id}) => {
     if(isVisible===false){
       submit();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[isVisible]);
 
   //TODO: add character counter
@@ -60,7 +61,7 @@ const Footer = ({id}) => {
       <Textarea
         autoFocus
         value={value}
-        onChange={({target}) => target.value.length<=120 && setValue(target.value)}
+        onChange={({target}) => target.value.length<=240 && setValue(target.value)}
         onKeyDown={onKeyDown}
       />
       <Flex>
