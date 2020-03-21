@@ -45,7 +45,7 @@ const Wrapper = styled.div`
     font-size: ${({theme}) => theme.sizes.xs}px !important;
   }
   > button {
-  margin-right: 2px;
+    margin-right: 2px;
   }
   &:hover {
     > button {
@@ -61,7 +61,7 @@ const ButtonGroup = ({type, ...props}) => {
   const {variant, text, icon} = types[type];
   return (
     <Wrapper variant={variant} {...props}>
-      <Button variant={variant} color="white" isSmall>
+      <Button variant={variant} color="white" isSmall >
         <Icon icon={icon} />
       </Button>
       <Color variant={variant}>

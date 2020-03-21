@@ -5,7 +5,7 @@ import {getColor} from '../helpers/getColor';
 import { darken } from 'polished';
 
 
-const {sizes, colors} = theme;
+const {sizes, colors} = theme; // because i used it in proptypes ;)
 
 const Button = styled.button`
   width: ${sizes.xl}px;

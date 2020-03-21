@@ -5,6 +5,7 @@ import Option from '../atoms/form/Option';
 import useDetectOutsideClick from '../../hooks/useDetectOutsideClick';
 import Icon from '../atoms/text/Icon';
 
+// helpers
 const radiusTop = css`
   border-radius: 4px 4px 0 0;
 `;

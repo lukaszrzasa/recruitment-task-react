@@ -75,7 +75,7 @@ AutoSuggest.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       search: PropTypes.string.isRequired,
-      // and otgers based on preferences
+      // and otgers based on preferences - but it's custom, based on getItem() fn
     }),
   ),
   getItem: PropTypes.func.isRequired,

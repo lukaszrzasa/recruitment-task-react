@@ -10,17 +10,17 @@ import Icon from '../atoms/text/Icon';
 
 const OutsideWrapper = styled.div`
   display: flex;
-  align-items: ${({selectTop}) => selectTop ? 'flex-end' : 'flex-start'};
-  height: ${({theme}) => theme.sizes.xl}px;
-  width: ${({isVisible, theme}) => isVisible ? '480' : theme.sizes.xl}px;
   transition: width .4s;
   overflow: visible;
   background-color: #fff;
-  border-radius: ${({theme}) => theme.sizes.xl/2}px;
   position: relative;
+  box-sizing: border-box;
+  align-items: ${({selectTop}) => selectTop ? 'flex-end' : 'flex-start'};
+  height: ${({theme}) => theme.sizes.xl}px;
+  width: ${({isVisible, theme}) => isVisible ? '480' : theme.sizes.xl}px;
+  border-radius: ${({theme}) => theme.sizes.xl/2}px;
   padding-right: ${({theme}) => theme.sizes.xl-2}px;
   border: solid 1px ${({theme}) => theme.colors.gray};
-  box-sizing: border-box;
 `;
 
 

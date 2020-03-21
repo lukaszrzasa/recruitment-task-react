@@ -33,6 +33,7 @@ const UserAutoSuggest = ({search, avatar, isFocused, ...props}) => {
 UserAutoSuggest.propTypes = {
   search: PropTypes.string.isRequired,
   avatar: PropTypes.string.isRequired,
+  isFocused: PropTypes.bool,
 };
 
 export default UserAutoSuggest;
