@@ -22,17 +22,17 @@ const SuggestionsWrapper = styled.div`
 `;
 
 
-const AutoComplete = ({options = [], getItem, evSelect}) => {
+const AutoSuggest = ({options = [], getItem, evSelect}) => {
 
-  const [suggestions, setSuggestions] = useState([]);
+  const [suggestions, setSuggestions] = useState(options.slice(0,7));
   const [focused, setFocused] = useState(0);
 
   const handleChange = ( { target: {value} } ) => {
     setFocused(0);
     if(value.length===0)
-      setSuggestions([]);
+      setSuggestions(options.slice(0,7));
     else
-      setSuggestions(options.filter(({search}) => search.indexOf(value)!==-1).slice(0,7));
+      setSuggestions(options.filter(({search}) => search.toLowerCase().indexOf(value.toLowerCase())!==-1).slice(0,7));
   };
 
   const onEnter = () => {
@@ -71,7 +71,7 @@ const AutoComplete = ({options = [], getItem, evSelect}) => {
   </Wrapper>
 };
 
-AutoComplete.propTypes = {
+AutoSuggest.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       search: PropTypes.string.isRequired,
@@ -82,4 +82,4 @@ AutoComplete.propTypes = {
   evSelect: PropTypes.func.isRequired,
 };
 
-export default AutoComplete;
+export default AutoSuggest;
