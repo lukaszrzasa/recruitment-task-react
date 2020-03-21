@@ -11,7 +11,7 @@ const Button = styled.button`
   width: ${sizes.xl}px;
   height: ${sizes.xl}px;
   line-height: ${sizes.xl}px;
-  font-size: ${sizes.xl*0.65}px;
+  font-size: ${sizes.lg*0.8}px;
   text-align: center;
   border-radius: ${sizes.xl/2}px;
   background-color: ${({variant}) => getColor(variant)};
@@ -22,6 +22,9 @@ const Button = styled.button`
   cursor: pointer;
   padding: 0;
   display: block;
+  &::-moz-focus-inner {
+    border: 0;
+  }
   
   ${({isSmall}) => isSmall && css`
     width: ${sizes.sm}px;
