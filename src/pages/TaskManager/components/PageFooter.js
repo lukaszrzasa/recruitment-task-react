@@ -5,6 +5,19 @@ import {Link} from 'react-router-dom';
 import Color from '../../../components/atoms/text/Color';
 import styled from 'styled-components';
 import Flex from '../../../components/atoms/interface/Flex';
+import {useDispatch, useSelector} from 'react-redux';
+import { setFilterUserMode, setFilterUserValue} from '../../../store/actions';
+import FormGroup from '../../../components/organisms/FormGroup';
+
+const options = [
+  {
+    key: 'user',
+    name: 'Użytkownik',
+  }, {
+    key: 'role',
+    name:'Stanowisko',
+  }
+];
 
 const Item = styled.div`
   display: flex;
@@ -25,15 +38,30 @@ const Item = styled.div`
 `;
 
 const PageFooter = () => {
-
-  const [search, setSearch] = useState('');
   const { getAllByName } = useGlobalUserData();
+  const { mode, value } = useSelector(({filter}) => filter.user);
+  const dispatch = useDispatch();
 
-  const users = getAllByName(search, true);
+  const users = getAllByName(value, true);
+
+
+  const onSelect = (item) => {
+    dispatch(setFilterUserMode(item));
+  };
+  const onChange = (value) => {
+    dispatch(setFilterUserValue(value));
+  };
 
   return (
     <Flex>
-    {/*  TODO: search */}
+      <FormGroup
+        options={options}
+        selectTop
+        mode={mode}
+        value={value}
+        evSelect={onSelect}
+        setValue={onChange}
+      />
       {users.slice(0,10).map(({ id, first_name, last_name, avatar, job_title})=><Item as={Link} key={id} to={`/user/${id}`}>
         <Avatar size="lg" src={avatar} />
         <Color variant="default">
