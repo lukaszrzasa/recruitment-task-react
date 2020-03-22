@@ -17,6 +17,13 @@ export const GlobalUserDataProvider = ({children}) => {
     const name = e.first_name + ' ' + e.last_name;
     return name.toLowerCase().indexOf(filterBy.toLowerCase())!==-1;
   });
+  const getAllByJobTitle = (filterBy, allowWithoutJobTitle) => userData.filter(e => {
+    if(!e.job_title) {
+      if(!allowWithoutJobTitle) return false;
+      return filterBy.length===0;
+    }
+    return e.job_title.toLowerCase().indexOf(filterBy.toLowerCase())!==-1;
+  });
 
   const getIdsByName = (filterBy) => getAllByName(filterBy).map(e => e.id);
 
@@ -51,7 +58,7 @@ export const GlobalUserDataProvider = ({children}) => {
     getData();
   },[]);
 
-  return(<GlobalUserDataContext.Provider value={{userData, getIdsByName, getIdsByJobTitle, getById, isProjectManager, getAllByName}}>
+  return(<GlobalUserDataContext.Provider value={{userData, getIdsByName, getIdsByJobTitle, getById, isProjectManager, getAllByName, getAllByJobTitle}}>
     {userData !== null && children}
     {err && <Error backTo="/" errMsg={`Unable to download userData (${err})`} />}
   </GlobalUserDataContext.Provider>);
@@ -65,6 +72,7 @@ const useGlobalUserData = () => {
     getById,
     isProjectManager,
     getAllByName,
+    getAllByJobTitle,
   } = useContext(GlobalUserDataContext);
 
   return {
@@ -74,6 +82,7 @@ const useGlobalUserData = () => {
     getById,
     isProjectManager,
     getAllByName,
+    getAllByJobTitle,
   };
 };
 
