@@ -1,7 +1,9 @@
 import {listNames} from './listOrderReducer';
 import {ADD_ITEM, ASSIGN_USER, REMOVE_ITEM, SET_LIST, TOGGLE_FAVOURITE, UPDATE_ITEM} from './types';
 
-const initialState = listNames.reduce((acc, curr)=>{
+export const initialIndex = 5;
+
+export const initialState = listNames.reduce((acc, curr)=>{
   acc[curr] = [];
   if(curr==='done') acc[curr].push({
     id: 1,
@@ -26,7 +28,7 @@ const initialState = listNames.reduce((acc, curr)=>{
   });
   return acc;
 },{
-  itemsCount:5, // helper variable (unique id) -> increment on each new item
+  itemsCount:initialIndex, // helper variable (unique id) -> increment on each new item
 });
 
 const defaultItem = {
@@ -52,7 +54,7 @@ const listItemsReducer = ( state = initialState, action ) => {
 
     case REMOVE_ITEM: {
       const {key, index} = action.payload;
-      const newList = [...state[key]];//TODO (optional): allow (temporary) undo deletion
+      const newList = [...state[key]]; //TODO: allow to undo deletion (suggestion: future update ;))
       newList.splice(index, 1);
       return {
         ...state,
