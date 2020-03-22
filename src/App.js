@@ -1,25 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import 'bulma/css/bulma.css'
+import { Provider } from 'react-redux';
+import { store } from './store/rootReducer';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Routes from './pages/Routes';
+import { ThemeProvider } from 'styled-components';
+import theme from './theme/theme';
+import {GlobalUserDataProvider} from './hooks/useUsersData';
+import GlobalStyle from './theme/GlobalStyle';
+import BodyModalProvider from './providers/BodyModal';
+import registerIcons from './registerIcons';
+
+registerIcons();
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GlobalUserDataProvider>
+      <ThemeProvider theme={theme}>
+        <BodyModalProvider>
+          <GlobalStyle/>
+          <Provider store={store}>
+              <Router>
+                <Routes/>
+              </Router>
+          </Provider>
+        </BodyModalProvider>
+      </ThemeProvider>
+    </GlobalUserDataProvider>
   );
 }
 
