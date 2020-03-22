@@ -1,6 +1,8 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
 import axios from 'axios';
 import Error from '../components/templates/Error';
+import FullScreenLoading from '../components/organisms/FullScreenLoading';
+import Heading from '../components/atoms/text/Heading';
 
 const GlobalUserDataContext = createContext();
 
@@ -60,6 +62,7 @@ export const GlobalUserDataProvider = ({children}) => {
 
   return(<GlobalUserDataContext.Provider value={{userData, getIdsByName, getIdsByJobTitle, getById, isProjectManager, getAllByName, getAllByJobTitle}}>
     {userData !== null && children}
+    {userData === null && <FullScreenLoading>Trwa ładowanie informacji o użytkownikach</FullScreenLoading>}
     {err && <Error backTo="/" errMsg={`Unable to download userData (${err})`} />}
   </GlobalUserDataContext.Provider>);
 };
