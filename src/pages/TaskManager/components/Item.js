@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import {Draggable} from 'react-beautiful-dnd';
 import Task from '../../../components/organisms/Task';
 
-
-const Item = ({columnId, item, index}) => {
+const Item = ({columnId, index, item}) => {
   return (
     <Draggable index={index} draggableId={item.id+''}>
       {(provided, snapshot) => (
@@ -26,9 +25,14 @@ const Item = ({columnId, item, index}) => {
 };
 
 Item.propTypes = {
-  item: PropTypes.object.isRequired,
-  index: PropTypes.number.isRequired,
   columnId: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
+  item: PropTypes.shape({
+    value: PropTypes.string,
+    userId: PropTypes.number,
+    isFavourite: PropTypes.bool,
+    id: PropTypes.number.isRequired,
+  }),
 };
 
 export default Item;

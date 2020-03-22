@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Header from '../atoms/interface/Header';
 import Flex from '../atoms/interface/Flex';
+import {Droppable} from 'react-beautiful-dnd';
 
 const Wrapper = styled.div`
   display: flex;
@@ -28,13 +29,28 @@ const Footer = styled.div`
   padding: ${({theme}) => `${theme.sizes.lg*0.2}px ${theme.sizes.lg*0.4}px`};
   background-color: #fff;
   margin-top: auto;
+  min-height: 90px;
 `;
 
 const TaskManagerTemplate = ({header, children, footer, ...props}) => {
   return (
     <Wrapper {...props}>
       <Header>{header}</Header>
-      <Content>{children}</Content>
+      <Droppable
+        droppableId="all-columns"
+        direction="horizontal"
+        type="COLUMN"
+      >
+        {provided => (
+          <Content
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+          >
+            {children}
+            {provided.placeholder}
+          </Content>)
+        }
+      </Droppable>
       <Footer>{footer}</Footer>
     </Wrapper>
   );

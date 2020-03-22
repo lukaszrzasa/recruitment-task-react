@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useSelector} from 'react-redux';
 import useGlobalUserData from '../../../hooks/useUsersData';
-import Item from './Item';
+import Task from './Item';
 
 const filterBy = (items, {mode, value}, getIdsByName) => {
   const itemsWithIndex = items.map((e, index)=>({...e, index}));
@@ -19,19 +19,17 @@ const filterBy = (items, {mode, value}, getIdsByName) => {
   }
 };
 
-const ItemList = ({id}) => {
-
-  const items = useSelector(({listItems}) => listItems[id]);
+const Items = ({columnId}) => {
+  const items = useSelector(({listItems}) => listItems[columnId]);
   const { list: filter } = useSelector(({filter})=>filter);
   const { getIdsByName } = useGlobalUserData();
   const filteredItems = filterBy(items, filter, getIdsByName);
 
-  return (filteredItems.map((e,i)=><Item key={e.id} columnId={id} index={e.index} item={e}/>)
-  );
+  return (filteredItems.map((e,i)=><Task key={e.id} columnId={columnId} index={e.index} item={e}/>));
 };
 
-ItemList.propTypes = {
-  id: PropTypes.string.isRequired,
+Items.propTypes = {
+  columnId: PropTypes.string.isRequired,
 };
 
-export default ItemList;
+export default Items;

@@ -2,7 +2,6 @@ import React, {createContext, useContext, useEffect, useState} from 'react';
 import axios from 'axios';
 import Error from '../components/templates/Error';
 import FullScreenLoading from '../components/organisms/FullScreenLoading';
-import Heading from '../components/atoms/text/Heading';
 
 const GlobalUserDataContext = createContext();
 

@@ -1,21 +1,20 @@
-import React, {useEffect, useRef, useState} from 'react';
-import Column from '../../../components/molecules/Column';
-import {Droppable} from 'react-beautiful-dnd';
-import {useDispatch, useSelector} from 'react-redux';
-import ItemList from './itemList';
-import Flex from '../../../components/atoms/interface/Flex';
-import Textarea from '../../../components/atoms/form/Textarea';
 import styled from 'styled-components';
+import React, {useEffect, useRef, useState} from 'react';
+import {useDispatch} from 'react-redux';
 import useDetectOutsideClick from '../../../hooks/useDetectOutsideClick';
 import {addItem} from '../../../store/actions';
+import Flex from '../../../components/atoms/interface/Flex';
 import ButtonGroup from '../../../components/molecules/ButtonGroup';
+import Textarea from '../../../components/atoms/form/Textarea';
+import PropTypes from 'prop-types';
 
 const FooterWrapper = styled.div`
   padding: 10px;
+  background-color: #fff;
+  border-radius: 0 0 5px 5px;
 `;
 
-
-const Footer = ({id}) => {
+const ColumnFooter = ({columnId}) => {
   const [isVisible, setIsVisible] = useState(false);
   const [value, setValue] = useState('');
   const container = useRef(null);
@@ -25,7 +24,7 @@ const Footer = ({id}) => {
   const submit = () => {
     const newValue = value.trim();
     if (newValue.length > 0) {
-      dispatch(addItem(id, newValue));
+      dispatch(addItem(columnId, newValue));
     }
     setIsVisible(false);
     setValue('');// clear value
@@ -69,41 +68,11 @@ const Footer = ({id}) => {
         <ButtonGroup type="save" onClick={submit} />
       </Flex>
     </>}
-  </FooterWrapper>;
+  </FooterWrapper>
 };
 
-const DroppableColumn = ({id, elem}) => {
-  const { name, icon } = elem;
-
-  return (<Column
-    icon={icon}
-    heading={name}
-    footer={ id!=='done' && <Footer id={id}/> }
-  >
-    <Droppable droppableId={id}>
-      {(provided) => (
-        <div
-          style={{overflowY:'auto',maxHeight:'100%',minHeight:'1px'}}
-          ref={provided.innerRef}
-          {...provided.droppableProps}>
-          <ItemList id={id} />
-          {provided.placeholder}
-        </div>
-      )}
-    </Droppable>
-  </Column>);
+ColumnFooter.propTypes = {
+  columnId: PropTypes.string.isRequired,
 };
 
-
-const ColumnList = () => {
-
-  const {listOrder, listHeader} = useSelector(state => state);
-
-  return (
-    <>
-      {listOrder.map((e,i)=> <DroppableColumn key={i} id={e} elem={listHeader[e]} />)}
-    </>
-  );
-};
-
-export default ColumnList;
+export default ColumnFooter;

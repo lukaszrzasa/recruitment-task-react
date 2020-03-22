@@ -17,9 +17,9 @@ const IconWrapper = styled.span`
 `;
 
 
-const ColumnHeader = ({icon, heading}) => {
+const ColumnHeader = ({icon, heading, ...props}) => {
   return (
-    <Wrapper>
+    <Wrapper {...props}>
       <IconWrapper>
         <Color variant="gray">
           <Icon icon={icon} />
