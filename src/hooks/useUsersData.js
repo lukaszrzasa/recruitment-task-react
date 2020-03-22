@@ -5,7 +5,7 @@ import FullScreenLoading from '../components/organisms/FullScreenLoading';
 
 const GlobalUserDataContext = createContext();
 
-const URL = 'http://www.mocky.io/v2/5e0de1893300002b00aa88f3';
+const URL = 'https://www.mocky.io/v2/5e0de1893300002b00aa88f3';
 
 export const GlobalUserDataProvider = ({children}) => {
 
