@@ -7,7 +7,7 @@ import {
 } from './types';
 
 
-const initialState = {
+export const initialState = {
   list: {
     mode: 'content', // "content" / "user"
     value: '',

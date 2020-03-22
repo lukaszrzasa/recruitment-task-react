@@ -56,8 +56,8 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  variant: colors.default,
-  color: colors.white
+  variant: 'default',
+  color: 'white',
 };
 
 

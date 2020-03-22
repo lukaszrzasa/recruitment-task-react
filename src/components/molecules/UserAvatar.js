@@ -23,15 +23,17 @@ const Wrapper = styled.div`
   }
 `;
 
-const UserAvatar = ({avatar, firstName, lastName, jobTitle, id}) => (<Wrapper as={Link} key={id} to={`/user/${id}`}>
-  <Avatar size="lg" src={avatar} />
-  <Color variant="default">
-    {firstName} {lastName}
-  </Color>
-  <Color variant="violet" isBlock>
-    <i>{jobTitle || '-'}</i>
-  </Color>
-</Wrapper>);
+const UserAvatar = ({avatar, firstName, lastName, jobTitle, id}) => (
+  <Wrapper as={Link} key={id} to={`/user/${id}`}>
+    <Avatar size="lg" src={avatar} />
+    <Color variant="default">
+      {firstName} {lastName}
+    </Color>
+    <Color variant="violet" isBlock>
+      <i>{jobTitle || '-'}</i>
+    </Color>
+  </Wrapper>
+);
 
 UserAvatar.propTypes = {
   avatar: PropTypes.string,
