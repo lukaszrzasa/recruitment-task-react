@@ -12,7 +12,7 @@ import Task from '../../components/organisms/Task';
 import {listNames} from '../../store/listOrderReducer';
 import {clearFilterList} from '../../store/actions';
 
-const Header = ()=>{
+const Header = () => {
   const dispatch = useDispatch();
   return <Button
     onClick={ () => dispatch(clearFilterList()) }
@@ -39,11 +39,27 @@ const MapContainer = ({position, zoom}) => {
   </Map>;
 };
 
-export const separateTasksByUserId = (items, userId) => listNames.map( // convert object of arrays --to--> array to arrays
-    key => items[key].map( // each key of object
-      ( e, index ) => ( { ...e, index, columnId: key } ) // add helper variable -> index (order) && columnId
-    ).filter(e => e.userId===userId) // find all elements for specific user
-  ).reduce((acc, curr) => [...curr, ...acc]  , []); // flatten array
+// split for testing
+export const flattenArrayOfArrays = (arr) => arr.reduce((acc, curr) => [...curr, ...acc]  , []);
+
+export const filterByUserId = (arr, userId) => arr.filter(e => e.userId===userId);
+
+export const addIndexAndColumnId = (arr, columnId) => arr.map( (e, index) => ({ ...e, index, columnId }) );
+
+export const separateTasksByUserId = (items, userId) => flattenArrayOfArrays(
+  listNames.map(
+    key => filterByUserId(
+      addIndexAndColumnId(items[key], key),
+      userId,
+    )
+  )
+);
+// export const separateTasksByUserId = (items, userId) => listNames.map( // convert object of arrays --to--> array to arrays
+//     key => items[key].map( // each key of object
+//       ( e, index ) => ( { ...e, index, columnId: key } ) // add helper variable -> index (order) && columnId
+//     ).filter(e => e.userId===userId) // find all elements for specific user
+//   ).reduce((acc, curr) => [...curr, ...acc]  , []); // flatten array
+
 
 const Footer = ({userId}) => {
   const items = useSelector(({listItems}) => listItems);
@@ -65,11 +81,22 @@ const UserPage = () => {
   const { getById } = useGlobalUserData();
   const { id } = useParams();
   const user = getById(id);
+
   if(!user) return <Error
     backTo="/"
     errMsg="Nie znaleziono użutkownika."
-  />
-  const { first_name, last_name, lat, lng, avatar, job_title, description, email, street, city } = user;
+  />;
+
+  const {
+    avatar,
+    first_name, last_name,
+    lat, lng,
+    job_title,
+    description,
+    email,
+    street,
+    city
+  } = user;
   const position = [lat, lng];
   const zoom = 13;
 
