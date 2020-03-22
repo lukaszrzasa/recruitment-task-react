@@ -1,31 +1,23 @@
 import React from 'react';
 import {render} from '@testing-library/react';
-import Color, { getColor } from './Color';
+import Color from './Color';
 import theme from '../../../theme/theme';
+
+const { colors } = theme;
 
 describe('atoms/text/Color component', ()=>{
 
-  it('getColor() helper works fine',()=>{
-    expect(getColor('black')).toBe(theme.colors.black);
-    expect(getColor('violet')).toBe(theme.colors.violet);
-    expect(getColor(undefined)).toBe(theme.colors.default);
-    expect(getColor(null)).toBe(theme.colors.default);
-    expect(getColor({})).toBe(theme.colors.default);
-    expect(getColor(/violet/g)).toBe(theme.colors.default);
-    expect(getColor('non existing color')).toBe(theme.colors.default);
-  });
-
   it('render properly',()=>{
-    const { container } = render(<Color variant="violet" />)
+    const { container } = render(<Color variant="violet" />);
     expect(container.firstChild).toMatchSnapshot()
   });
 
   it('has good color',()=>{
     const text = 'Text that\'ll be tested';
     const { getByText, rerender } = render(<Color variant="violet">{text}</Color>);
-    expect( getByText(text) ).toHaveStyle(`color: ${theme.colors.violet}`);
+    expect( getByText(text) ).toHaveStyle(`color: ${colors.violet}`);
     rerender(<Color variant="black">{text}</Color>);
-    expect( getByText(text) ).toHaveStyle(`color: ${theme.colors.black}`);
+    expect( getByText(text) ).toHaveStyle(`color: ${colors.black}`);
   });
 
   it('renders as block',()=>{
