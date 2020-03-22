@@ -77,12 +77,14 @@ const Select = ({options, evSelect, mode, selectTop}) => {
     isVisible={isVisible}
     selectTop={selectTop}
     onClick={()=> !isVisible && setIsVisible(true)}
+    data-testid="select-container"
   >
     <ExpandIcon icon="caret-down"/>
     {options.map(({key, name},i) => <Option
       onClick={ () => isVisible && handleClick(key) }
       key={i}
       className={ key===mode ? 'selected' : 'no-selected' }
+      data-testid="select-option"
     >
       {name}
     </Option>)}

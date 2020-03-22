@@ -64,8 +64,9 @@ const AutoSuggest = ({options = [], getItem, evSelect}) => {
       autoFocus
       onChange={handleChange}
       onKeyDown={handleKeyDown}
+      data-testid="autosuggest-input"
     />
-    {suggestions.length>0 && <SuggestionsWrapper>
+    {suggestions.length>0 && <SuggestionsWrapper data-testid="autosuggest-container">
       {suggestions.map( (e,i) => getItem(e, focused===i, evSelect) )}
     </SuggestionsWrapper>}
   </Wrapper>
