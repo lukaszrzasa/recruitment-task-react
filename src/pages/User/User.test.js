@@ -18,5 +18,3 @@ describe('User page helper functions', () => {
   });
 
 });
-
-// TODO

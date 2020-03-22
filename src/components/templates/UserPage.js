@@ -67,7 +67,7 @@ const Footer = styled.footer`
 const FooterContent = styled.div`
   display: flex;
   flex-wrap: wrap;
-  text-align: left;
+  justify-content: center;
   > div {
     width: 310px;
     margin:5px;

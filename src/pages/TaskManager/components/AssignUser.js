@@ -34,7 +34,7 @@ const AssignUser = ({userId, index, columnId, ...props}) => {
   const dispatch = useDispatch();
 
   const onSelect = ({id}) => {
-    setIsModal(false);//TODO clear modal
+    setIsModal(false);
     if(id && getById(id))
       dispatch(assignUser(columnId, index, id));
   };

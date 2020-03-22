@@ -63,7 +63,7 @@ const Task = ({item, isDragging, columnId, index}) => {
     setIsEdited(false);
   };
 
-  const onKeyDown = (ev) => { // TODO: onEnter / onEscape
+  const onKeyDown = (ev) => {
     if(ev.key === 'Enter')
       submit();
     if(ev.key === 'Escape')

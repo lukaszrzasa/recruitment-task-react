@@ -50,7 +50,7 @@ const Footer = ({id}) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[isVisible]);
 
-  //TODO: add character counter
+  //TODO: add character counter (optional)
 
 
   return <FooterWrapper ref={container}>

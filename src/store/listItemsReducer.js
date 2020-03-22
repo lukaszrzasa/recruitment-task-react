@@ -54,7 +54,7 @@ const listItemsReducer = ( state = initialState, action ) => {
 
     case REMOVE_ITEM: {
       const {key, index} = action.payload;
-      const newList = [...state[key]]; //TODO: allow to undo deletion (suggestion: future update ;))
+      const newList = [...state[key]]; //TODO: allow to undo deletion (optional / future update ;))
       newList.splice(index, 1);
       return {
         ...state,
