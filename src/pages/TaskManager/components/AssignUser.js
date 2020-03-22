@@ -59,13 +59,12 @@ const AssignUser = ({userId, index, columnId, ...props}) => {
     if(columnId !== 'done') {
       dispatch(assignUser(columnId, index, null));
     } else {
-      const {right, top} = deleteBtnRef.current.getBoundingClientRect();
-      setNode(<ErrorCard onClick={()=>setIsModal(false)}>
+      setNode(<ErrorCard style={{width:'460px'}} onClick={()=>setIsModal(false)}>
         <Icon style={{position:'absolute',top:'4px',right:'4px',cursor:'pointer'}} icon="times"/>
-        Zadania w tej kategorii muszą mieć przypisanego Managera Projektu. Przenieś zadanie do innej kategorii.
+        Zadania w tej kategorii muszą mieć przypisanego Managera Projektu. Przenieś wcześniej zadanie do innej kategorii.
       </ErrorCard>);
       setIsModal(true);
-      setPos({left:right-200, top})
+      setPos({left:window.innerWidth-465, top: 5})
     }
   };
 
