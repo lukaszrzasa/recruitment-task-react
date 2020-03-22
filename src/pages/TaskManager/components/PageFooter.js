@@ -19,11 +19,11 @@ const options = [
 
 
 const PageFooter = () => {
-  const { getAllByName } = useGlobalUserData();
+  const { getAllByName, getAllByJobTitle } = useGlobalUserData();
   const { mode, value } = useSelector(({filter}) => filter.user);
   const dispatch = useDispatch();
 
-  const users = getAllByName(value, true);
+  const users = mode==='user' ? getAllByName(value, true) : getAllByJobTitle(value, true);
 
 
   const onSelect = (item) => {
