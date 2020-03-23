@@ -46,17 +46,14 @@ export const GlobalUserDataProvider = ({children}) => {
     return false;
   };
 
-  const getData = async () => {
-    try {
-      const req = await axios.get(URL);
-      const data = req.data;
-      setUserData([...data]);
-    } catch (err) {
-      setErr(err);
-    }
-  };
-  useEffect(()=>{
-    getData();
+  useEffect(() => {
+    axios.get(URL)
+      .then(({ data }) => {
+        setUserData([...data]);
+      })
+      .catch(err => {
+        setErr(err);
+      });
   },[]);
 
   return(<GlobalUserDataContext.Provider value={{userData, getIdsByName, getIdsByJobTitle, getById, isProjectManager, getAllByName, getAllByJobTitle}}>

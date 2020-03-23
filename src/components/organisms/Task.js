@@ -84,7 +84,7 @@ const Task = ({item, isDragging, columnId, index}) => {
       </ToggleFavourite>
       {!isEdited && value}
       {isEdited && <Textarea
-        onChange={({target}) => target.value.length<=240 && setNewValue(target.value)}
+        onChange={({target}) => setNewValue(target.value.substring(0,240))}
         autoFocus
         value={newValue}
         onKeyDown={onKeyDown}

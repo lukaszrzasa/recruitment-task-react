@@ -9,6 +9,9 @@ import useGlobalUserData from '../../hooks/useUsersData';
 import reorder from './helpers/reorder';
 import move from './helpers/move';
 import Columns from './components/Columns';
+import useBodyModal from '../../hooks/useBodyModal';
+import ErrorCard from '../../components/atoms/interface/ErrorCard';
+import Icon from '../../components/atoms/text/Icon';
 
 
 const TaskManagerPage = () => {
@@ -16,6 +19,7 @@ const TaskManagerPage = () => {
   const { listItems, listOrder } = useSelector(state => state);
   const { isProjectManager } = useGlobalUserData();
   const dispatch = useDispatch();
+  const { setIsModal, setPos, setNode } = useBodyModal();
 
   const handleDragEnd = (event) => {
     const { source, destination, type } = event;
@@ -27,6 +31,12 @@ const TaskManagerPage = () => {
         if (destination.droppableId === 'done') {
           const {userId} = listItems[source.droppableId][source.index];
           if (!isProjectManager(userId)){
+            setNode(<ErrorCard style={{width:'460px'}} onClick={()=>setIsModal(false)}>
+              <Icon style={{position:'absolute',top:'4px',right:'4px',cursor:'pointer'}} icon="times"/>
+              Aby przypisać użytkownika do tej kategorii musi on być na stanowisku Managera Projektu.
+            </ErrorCard>);
+            setIsModal(true);
+            setPos({left:window.innerWidth-465, top: 5});
             return; // not allowed ;)
           }
         }

@@ -1,28 +1,14 @@
 import {listNames} from './listOrderReducer';
 import {ADD_ITEM, ASSIGN_USER, REMOVE_ITEM, SET_LIST, TOGGLE_FAVOURITE, UPDATE_ITEM} from './types';
 
-export const initialIndex = 5;
+export const initialIndex = 2;
 
 export const initialState = listNames.reduce((acc, curr)=>{
   acc[curr] = [];
+  // it's for testing
   if(curr==='done') acc[curr].push({
     id: 1,
-    value: 'aa',
-    userId: 6,
-    isFavourite: true,
-  },{
-    id: 2,
-    value: 'aa',
-    userId: 6,
-    isFavourite: true,
-  },{
-    id: 3,
-    value: 'aa',
-    userId: 6,
-    isFavourite: true,
-  },{
-    id: 4,
-    value: 'aa',
+    value: 'This task is assigned to a Project Manager',
     userId: 6,
     isFavourite: true,
   });

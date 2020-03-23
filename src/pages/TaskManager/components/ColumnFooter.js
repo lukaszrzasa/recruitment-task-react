@@ -60,7 +60,7 @@ const ColumnFooter = ({columnId}) => {
       <Textarea
         autoFocus
         value={value}
-        onChange={({target}) => target.value.length<=240 && setValue(target.value)}
+        onChange={({target}) => setValue(target.value.substring(0,240))}
         onKeyDown={onKeyDown}
       />
       <Flex>
