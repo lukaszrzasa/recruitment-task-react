@@ -6,10 +6,10 @@ import FormGroup from '../../../components/organisms/FormGroup';
 const options = [
   {
     key: 'content',
-    name: 'Nazwa',
+    name: 'Content',
   }, {
     key: 'user',
-    name:'Użytkownik',
+    name:'User name',
   }
 ];
 

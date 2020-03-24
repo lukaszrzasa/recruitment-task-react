@@ -61,7 +61,7 @@ const AssignUser = ({userId, index, columnId, ...props}) => {
     } else {
       setNode(<ErrorCard style={{width:'460px'}} onClick={()=>setIsModal(false)}>
         <Icon style={{position:'absolute',top:'4px',right:'4px',cursor:'pointer'}} icon="times"/>
-        Zadania w tej kategorii muszą mieć przypisanego Managera Projektu. Przenieś wcześniej zadanie do innej kategorii.
+        This category requires tasks with an assigned Project Manager. To delete an assigned user you must move the task to a different category.
       </ErrorCard>);
       setIsModal(true);
       setPos({left:window.innerWidth-465, top: 5})

@@ -9,10 +9,10 @@ import UserAvatar from '../../../components/molecules/UserAvatar';
 const options = [
   {
     key: 'user',
-    name: 'Użytkownik',
+    name: 'User name',
   }, {
     key: 'role',
-    name:'Stanowisko',
+    name:'Job title',
   }
 ];
 

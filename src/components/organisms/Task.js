@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   padding: 0 6px 6px;
   transition: transform .3s 0s;
   position: relative;
+  text-align: left;
 `;
 
 const Footer = styled.div`

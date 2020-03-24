@@ -33,7 +33,7 @@ const TaskManagerPage = () => {
           if (!isProjectManager(userId)){
             setNode(<ErrorCard style={{width:'460px'}} onClick={()=>setIsModal(false)}>
               <Icon style={{position:'absolute',top:'4px',right:'4px',cursor:'pointer'}} icon="times"/>
-              Aby przypisać użytkownika do tej kategorii musi on być na stanowisku Managera Projektu.
+              To move a task to this category, it must have an assigned Project Manager.
             </ErrorCard>);
             setIsModal(true);
             setPos({left:window.innerWidth-465, top: 5});

@@ -98,7 +98,7 @@ const FormGroup = ({options, mode, value, evSelect, setValue, selectTop}) => {
         <TextInput
           ref={input}
           value={value}
-          placeholder="Np."
+          placeholder="Type here"
           onChange={({target}) => setValue(target.value)} />
       </InputWrapper>
     </Wrapper>

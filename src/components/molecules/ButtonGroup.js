@@ -10,27 +10,27 @@ import Icon from '../atoms/text/Icon';
 const types = {
   edit: {
     variant: 'gray',
-    text: 'Edytuj',
+    text: 'Edit',
     icon: 'pen',
   },
   cancel: {
     variant: 'red',
-    text: 'Anuluj',
+    text: 'Cancel',
     icon: 'times',
   },
   remove: {
     variant: 'red',
-    text: 'Usuń',
+    text: 'Delete',
     icon: 'times',
   },
   save: {
     variant: 'green',
-    text: 'Zapisz',
+    text: 'Save',
     icon: 'check',
   },
   add: {
     variant: 'gray',
-    text: 'Dodaj',
+    text: 'Add',
     icon: 'plus',
   },
 };

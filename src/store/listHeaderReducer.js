@@ -1,23 +1,23 @@
 const initialState = {
   suspended: {
     icon: 'pause',
-    name: 'Wstrzymane',
+    name: 'Canceled',
   },
   toRealization: {
     icon: 'door-open',
-    name: 'Do realizacji',
+    name: 'Waiting',
   },
   accomplished: {
     icon: 'door-closed',
-    name: 'Realizowane',
+    name: 'In progress',
   },
   solved: {
     icon: 'check',
-    name: 'Rozwiązane',
+    name: 'Solved',
   },
   done: {
     icon: 'check-double',
-    name: 'Zakończone',
+    name: 'Done',
   },
 };
 

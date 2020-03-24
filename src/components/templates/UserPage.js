@@ -109,7 +109,7 @@ const UserPageTemplate = (
         <Footer>
           {footer && <>
             <Heading size="lg">
-              <strong>Przypisane zadania:</strong>
+              <strong>Assigned tasks:</strong>
             </Heading>
             <FooterContent>
               {footer}
@@ -124,11 +124,11 @@ const UserPageTemplate = (
               variant="gray"
               color="white"
             >
-              Pokaż wszystkie przypisane
+              Show all
             </TextButton>
           </>}
           {!footer && <Paragraph>
-            Nie znaleziono żadnych zadań przypisanych do tego użytkownika.
+            Couldn't find any tasks assigned for this user
           </Paragraph>}
         </Footer>
       </InfoWrapper>

@@ -58,7 +58,7 @@ export const GlobalUserDataProvider = ({children}) => {
 
   return(<GlobalUserDataContext.Provider value={{userData, getIdsByName, getIdsByJobTitle, getById, isProjectManager, getAllByName, getAllByJobTitle}}>
     {userData !== null && children}
-    {userData === null && <FullScreenLoading>Trwa ładowanie informacji o użytkownikach</FullScreenLoading>}
+    {userData === null && <FullScreenLoading>Loading data...</FullScreenLoading>}
     {err && <Error backTo="/" errMsg={`Unable to download userData (${err})`} />}
   </GlobalUserDataContext.Provider>);
 };
